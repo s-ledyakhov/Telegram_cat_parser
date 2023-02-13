@@ -6,6 +6,6 @@ I also prepared a dockerfile for you, just put all the files in one directory on
 docker build -t poster .
 docker run -d --name cat_poster poster 
 ```
-If you want to do a CDI/CD for your bot, I'll also attach a simple file for the gitlab runner
+If you want to do a CI/CD for your bot, I'll also attach a simple file for the gitlab runner
 
 (In fact, you can parse all sorts of things, but for a simple example, I chose kittens. Everyone loves kittens 🐈)
