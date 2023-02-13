@@ -1,0 +1,27 @@
+image: docker:stable
+
+variables:
+  IMAGE_NAME: poster
+  DOCKER_NAME: cat_poster
+
+stages:
+  - Build image
+  - Push to Docker Hub
+
+docker build:
+  stage: Build image
+  script:
+    - docker info
+    - docker stop $DOCKER_NAME
+    - docker rm $DOCKER_NAME
+    - docker rmi $IMAGE_NAME
+    - docker build -t $IMAGE_NAME .
+    - docker run -d --name $DOCKER_NAME $IMAGE_NAME
+
+docker push:
+  stage: Push to Docker Hub
+  only:
+    - master
+  script:
+    - docker run -d --name $DOCKER_NAME $IMAGE_NAME
+    - docker logs $DOCKER_NAME
